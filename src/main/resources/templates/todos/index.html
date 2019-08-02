@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
+</head>
+<body>
+<header>
+
+</header>
+
+<div class="container">
+    <h2>新しいToDoを作成する</h2>
+    <h3>Todo名</h3>
+    <form th:action="@{/new}" method="post">
+        <input type="text" name="title">
+        <input type="text" name="limit">
+        <input type="submit" value="Todoの追加">
+    </form>
+
+
+</div>
+
+
+
+</body>
+</html>
