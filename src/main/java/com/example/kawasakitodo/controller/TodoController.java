@@ -127,14 +127,14 @@ public class TodoController {
     public String searchResult(@RequestParam String searchWord, Model model) {
 
         if (searchWord.isEmpty() || searchWord == null) {
-            model.addAttribute("err_msg01", "文字を入力してください");
+            model.addAttribute("err_must_word", "文字を入力してください");
             return "search";
         }
 
         List<TodoList> todoLists = todoService.searchInDone(searchWord);
 
         if (todoLists.isEmpty()) {
-            model.addAttribute("err_msg02", "対象のtodoがありません");
+            model.addAttribute("err_not_word", "対象のtodoがありません");
         }
 
         model.addAttribute("todoLists", todoLists).addAttribute("searchWord", searchWord);
