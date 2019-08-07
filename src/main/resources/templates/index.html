@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja" layout:decorate="~{layout/header}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/header"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
+</head>
+
+<body>
+<div class="container" layout:fragment="content">
+        <div class="wrapper-heading">新しいToDoを作成する</div>
+        <div class="wrapper-body">
+            <form action="/" method="post" th:object="${todoList}">
+                <div class="form-group">
+                    <label for="name">Todo名</label>
+                    <input class="form-control" type="text" id="name" th:field="*{name}">
+                    <span class="text-danger" th:errors="*{name}" th:if="${#fields.hasErrors('name')}"></span>
+                </div>
+                <div class="form-group">
+                    <label for="deadline">期限</label>
+                    <input class="form-control" type="date" id="deadline"  th:field="*{deadLine}">
+                    <span class="text-danger" th:errors="*{deadLine}" th:if="${#fields.hasErrors('deadLine')}"></span>
+                </div>
+                <input class="btn btn-info" type="submit" value="Todoの追加">
+            </form>
+            <form class ="pull-right" action="/delete" method="post">
+                <input class="btn btn-danger"  type="submit" value="全て削除">
+            </form>
+        </div>
+        <table class="table table-striped">
+            <thread>
+                <tr>
+                    <th>タイトル</th>
+                    <th>期限</th>
+                    <th>作成日</th>
+                    <th>編集</th>
+                    <th>状態</th>
+                    <th>削除</th>
+                </tr>
+            </thread>
+            <tbody>
+            <tr th:each="todoList:${todoLists}" th:object="${todoList}">
+                <td th:text="*{name}"></td>
+                <td th:text="*{#temporals.format(deadLine, 'yyyy年MM月dd日')}"></td>
+                <td th:text="*{#temporals.format(createDate, 'yyyy年MM月dd日')}"></td>
+                <td><a class="btn btn-primary" th:href="@{/{id}/edit(id=*{id})}">編集</a></td>
+                <td>
+                    <form th:action="@{/{id}/change(id=*{id})}" th:method="put">
+                        <input class="btn btn-success" th:if="${todoList.isDone()==true}" type="submit" value="完了">
+                        <input class="btn btn-danger" th:if="${todoList.isDone()==false}" type="submit" value="未完了">
+                    </form>
+                </td>
+                <td>
+                    <form th:action="@{/{id}/delete(id=*{id})}" method="post">
+                        <input class="btn btn-warning"  type="submit" value="削除">
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+</div>
+</body>
+</html>
+
