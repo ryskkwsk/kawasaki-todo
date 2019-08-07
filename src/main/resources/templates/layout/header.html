@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ulraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>Todoリスト</title>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" ref="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+            <a class="navbar-brand center-block" href="/">Todoリスト</a>
+            <div class="collapse navbar-collapse">
+                <div class="navbar-nav navbar-right">
+                    <a class="nav-item navbar-brand" href="/search">検索</a>
+                </div>
+            </div>
+        </nav>
+        <div layout:fragment="content"></div>
+    </body>
+</html>

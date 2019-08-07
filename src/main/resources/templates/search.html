@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja" layout:decorate="~{layout/header}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/header"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+        <meta charset="UTF-8">
+        <title>検索画面</title>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container" layout:fragment="content">
+<div>
+    <form action="/search" class="form-inline" method="post" >
+        <input class="form-control" name="searchword" th:value="${searchword}" type="search">
+        <input class="btn btn-info" type="submit" value="検索">
+    </form>
+    <div class="text-danger" th:if="todoLists">
+        <p class="text-danger" th:text="${err_msg01}"></p>
+    </div>
+    <div class="text-danger" th:if="todoLists">
+        <p class="text-danger" th:text="${err_msg02}"></p>
+    </div>
+</div>
+    <table class="table table-striped">
+        <thread>
+            <tr>
+                <th>タイトル</th>
+                <th>期限</th>
+                <th>作成日</th>
+                <th>状態</th>
+                <th>削除</th>
+            </tr>
+        </thread>
+        <tbody>
+        <tr th:each="todoList:${todoLists}" th:object="${todoList}">
+            <td th:text="*{name}"></td>
+            <td th:text="*{#temporals.format(deadLine, 'yyyy年MM月dd日')}"></td>
+            <td th:text="*{#temporals.format(createDate, 'yyyy年MM月dd日')}"></td>
+            <td><a class="btn btn-success" th:href="@{/{id}/edit(id=*{id})}">編集</a></td>
+            <td>
+                <form th:action="@{/{id}/change(id=*{id})}" th:method="put">
+                    <input class="btn btn-primary" th:if="${todoList.isDone()==true}" type="submit" value="完了">
+                    <input class="btn btn-danger" th:if="${todoList.isDone()==false}" type="submit" value="未完了">
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
