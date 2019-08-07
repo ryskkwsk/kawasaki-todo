@@ -52,6 +52,8 @@ public class TodoController {
 
         if (todoService.createExistSameNameCase(receivedTodoList)) {
             result.rejectValue("name", null, "このTodoは存在します。");
+            model.addAttribute("todoLists",todoService.findAll());
+             return "index";
         }
         if (result.hasErrors()) {
             model.addAttribute("todoList", receivedTodoList).addAttribute("todoLists", todoService.findAll());

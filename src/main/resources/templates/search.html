@@ -14,10 +14,10 @@
         <input class="btn btn-info" type="submit" value="検索">
     </form>
     <div class="text-danger" th:if="todoLists">
-        <p class="text-danger" th:text="${err_msg01}"></p>
+        <p class="text-danger" th:text="${err_must_word}"></p>
     </div>
     <div class="text-danger" th:if="todoLists">
-        <p class="text-danger" th:text="${err_msg02}"></p>
+        <p class="text-danger" th:text="${err_not_word}"></p>
     </div>
 </div>
     <table class="table table-striped">

@@ -30,6 +30,9 @@
                 <input class="btn btn-danger"  type="submit" value="全て削除">
             </form>
         </div>
+    <div class="text-danger"  th:if="${#lists.isEmpty(todoLists)}">
+        <p>登録されたTodoはございません。</p>
+    </div>
         <table class="table table-striped">
             <thread>
                 <tr>
