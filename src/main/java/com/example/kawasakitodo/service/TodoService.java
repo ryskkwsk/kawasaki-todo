@@ -3,7 +3,6 @@ package com.example.kawasakitodo.service;
 
 import com.example.kawasakitodo.entity.TodoList;
 import com.example.kawasakitodo.repository.TodoListRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -17,8 +16,11 @@ import java.util.Objects;
 @ComponentScan("service")
 public class TodoService {
 
-    @Autowired
-    private TodoListRepository todoListRepository;
+    private final TodoListRepository todoListRepository;
+
+    public TodoService(TodoListRepository todoListRepository) {
+        this.todoListRepository = todoListRepository;
+    }
 
     /**
      * findAllメソッド

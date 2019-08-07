@@ -3,7 +3,6 @@ package com.example.kawasakitodo.controller;
 
 import com.example.kawasakitodo.entity.TodoList;
 import com.example.kawasakitodo.service.TodoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,12 +10,16 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class TodoController {
 
-    @Autowired
-    private TodoService todoService;
+    private final TodoService todoService;
+
+    public TodoController(TodoService todoService) {
+        this.todoService = todoService;
+    }
 
     /**
      * topメソッド
@@ -82,13 +85,13 @@ public class TodoController {
 
 
     /**
-     * changeメソッド
+     * modifyメソッド
      * todoリストの状態を変更する
      * @param id
      * @return index.htmlにリダイレクトする
      */
-    @RequestMapping(value = "{id}/change", method = RequestMethod.PUT)
-    public String change(@PathVariable Long id) {
+    @PutMapping("{id}/change")
+    public String modify(@PathVariable Long id) {
         todoService.change(id);
         return "redirect:/";
     }
@@ -97,13 +100,10 @@ public class TodoController {
     /**
      * searchメソッド
      * 検索画面を表示する
-     * @param model Modelクラスのインスタンス
      * @return search.htmlを返す
      */
-    @RequestMapping(value = "search", method = RequestMethod.GET)
-    public String search(Model model) {
-        TodoList todoList = new TodoList();
-        model.addAttribute("todoList", todoList);
+    @GetMapping("search")
+    public String search() {
         return "search";
     }
 
@@ -114,7 +114,7 @@ public class TodoController {
      * @param model　　Modelクラスのインスタンス
      * @return search.htmlを返す
      */
-    @RequestMapping(value = "search", method = RequestMethod.POST)
+    @PostMapping("search")
     public String searchAfter(@RequestParam String searchword, Model model) {
 
         List<TodoList> todoList = todoService.findAll();
@@ -142,7 +142,7 @@ public class TodoController {
      * @param model Modelクラスのインスタンス
      * @return index.htmlにリダイレクトする
      */
-    @RequestMapping(value = "/{id}/delete", method = RequestMethod.POST)
+    @PostMapping("/{id}/delete")
     public String destroy(@PathVariable Long id, Model model) {
         //該当リストの削除
         todoService.delete(id);
@@ -158,7 +158,7 @@ public class TodoController {
      * 全てのtodoリストを削除する
      * @return index.htmlにリダイレクトする
      */
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @PostMapping("/delete")
     public String allDestroy() {
         todoService.allDelete();
         return "redirect:/";
