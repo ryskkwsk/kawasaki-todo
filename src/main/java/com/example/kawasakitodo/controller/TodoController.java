@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Null;
 import java.util.List;
 import java.util.Objects;
 
@@ -90,7 +91,7 @@ public class TodoController {
      * @param id
      * @return index.htmlにリダイレクトする
      */
-    @PutMapping("{id}/change")
+    @PutMapping("/{id}/modify")
     public String modify(@PathVariable Long id) {
         todoService.change(id);
         return "redirect:/";
@@ -117,19 +118,17 @@ public class TodoController {
     @PostMapping("search")
     public String searchAfter(@RequestParam String searchword, Model model) {
 
-        List<TodoList> todoList = todoService.findAll();
-
         if(searchword.isEmpty()){
             model.addAttribute("err_msg01", "文字を入力してください");
             return "search";
         }
 
-        if(!todoList.contains(searchword)){
-            model.addAttribute("err_msg02","対象のtodoリストはありません");
-            return "search";
+        List<TodoList> todoLists = todoService.searchInDone(searchword);
+
+        if(todoLists.isEmpty()) {
+            model.addAttribute("err_msg02","対象のtodoがありません");
         }
 
-        List<TodoList> todoLists = todoService.searchInDone(searchword);
         model.addAttribute("todoLists", todoLists).addAttribute("searchword", searchword);
         return "search";
     }
