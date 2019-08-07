@@ -10,7 +10,7 @@
 <div class="container" layout:fragment="content">
 <div>
     <form action="/search" class="form-inline" method="post" >
-        <input class="form-control" name="searchword" th:value="${searchword}" type="search">
+        <input class="form-control" name="searchWord" th:value="${searchWord}" type="search">
         <input class="btn btn-info" type="submit" value="検索">
     </form>
     <div class="text-danger" th:if="todoLists">

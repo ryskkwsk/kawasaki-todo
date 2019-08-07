@@ -109,27 +109,27 @@ public class TodoController {
     }
 
     /**
-     * searchAfterメソッド
-     * リストから検索する
-     * @param searchword　入力された検索キーワード
+     * searchResultメソッド
+     * リストからtodo検索する
+     * @param searchWord　入力された検索キーワード
      * @param model　　Modelクラスのインスタンス
      * @return search.htmlを返す
      */
     @PostMapping("search")
-    public String searchAfter(@RequestParam String searchword, Model model) {
+    public String searchResult(@RequestParam String searchWord, Model model) {
 
-        if(searchword.isEmpty()){
+        if(searchWord.isEmpty()){
             model.addAttribute("err_msg01", "文字を入力してください");
             return "search";
         }
 
-        List<TodoList> todoLists = todoService.searchInDone(searchword);
+        List<TodoList> todoLists = todoService.searchInDone(searchWord);
 
         if(todoLists.isEmpty()) {
             model.addAttribute("err_msg02","対象のtodoがありません");
         }
 
-        model.addAttribute("todoLists", todoLists).addAttribute("searchword", searchword);
+        model.addAttribute("todoLists", todoLists).addAttribute("searchWord", searchWord);
         return "search";
     }
 
