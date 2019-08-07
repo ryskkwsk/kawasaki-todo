@@ -145,15 +145,14 @@ public class TodoController {
 
 
     /**
-     * destroyメソッド
-     * 指定したtodoリストを削除する
-     *
+     * deleteメソッド
+     * 指定したtodoリストを削除する(デバッグ用)
      * @param id
      * @param model Modelクラスのインスタンス
      * @return index.htmlにリダイレクトする
      */
     @PostMapping("/{id}/delete")
-    public String destroy(@PathVariable Long id, Model model) {
+    public String delete(@PathVariable Long id, Model model) {
         //該当リストの削除
         todoService.delete(id);
         //更新されたリスト一覧を取得
@@ -164,13 +163,12 @@ public class TodoController {
     }
 
     /**
-     * allDestroyメソッド
-     * 全てのtodoリストを削除する
-     *
+     * deleteAllメソッド
+     * 全てのtodoリストを削除する(デバッグ用)
      * @return index.htmlにリダイレクトする
      */
     @PostMapping("/delete")
-    public String allDestroy() {
+    public String deleteAll() {
         todoService.allDelete();
         return "redirect:/";
     }
