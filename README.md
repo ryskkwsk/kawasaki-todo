@@ -31,22 +31,23 @@
 |done|BIT|yes||
 
 ####ディレクトリ構成
+
 src/
-   ├main/
+   ├main/   
         ├java/
+		
 		     ├com/
 			     ├example/
 				         ├kawasakitodo
 						             ├controller/
-									            ├TodoController
+									            ├TodoController	
 									 ├entity/
 									        ├TodoList
 									 ├repository/
-									            ├TodoListRepository
+									            ├TodoListRepository	
 									 ├service/
 									         ├TodoService
-								     ─ KawasakiTodoApplication
-									 
+								     ─ KawasakiTodoApplication	 
         ├resources/
 		          ├static/
 				         ├bootstrap.js
