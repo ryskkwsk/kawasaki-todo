@@ -3,6 +3,7 @@ package com.example.kawasakitodo.controller;
 
 import com.example.kawasakitodo.entity.TodoList;
 import com.example.kawasakitodo.service.TodoService;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -118,7 +119,7 @@ public class TodoController {
     @PostMapping("search")
     public String searchResult(@RequestParam String searchWord, Model model) {
 
-        if(searchWord.isEmpty()){
+        if(searchWord.isEmpty() || searchWord == null){
             model.addAttribute("err_msg01", "文字を入力してください");
             return "search";
         }
