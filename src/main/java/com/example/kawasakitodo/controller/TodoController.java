@@ -26,11 +26,12 @@ public class TodoController {
     /**
      * topメソッド
      * データベースから一覧を取得して表示する
+     *
      * @param model Modelクラスのインスタンス
      * @return index.htmlを返す
      */
     @GetMapping("/")
-    public String top( Model model) {
+    public String top(Model model) {
         TodoList todoList = new TodoList();
         List<TodoList> todoLists = todoService.findAll();
         model.addAttribute("todoList", todoList).addAttribute("todoLists", todoLists);
@@ -40,9 +41,10 @@ public class TodoController {
     /**
      * createメソッド
      * 新しいTodoを作成する
+     *
      * @param receivedTodoList
      * @param result
-     * @param model Modelクラスのインスタンス
+     * @param model            Modelクラスのインスタンス
      * @return index.htmlにリダイレクトする
      */
     @PostMapping("/")
@@ -62,7 +64,8 @@ public class TodoController {
     /**
      * editメソッド
      * todoリストを編集する
-     * @param id データベースのカラム
+     *
+     * @param id    データベースのカラム
      * @param model Modelクラスのインスタンス
      * @return edit.htmlを返す
      */
@@ -75,6 +78,7 @@ public class TodoController {
 
     /**
      * updateメソッド
+     *
      * @param id
      * @param receivedTodoList
      * @return index.htmlにリダイレクトする
@@ -89,6 +93,7 @@ public class TodoController {
     /**
      * modifyメソッド
      * todoリストの状態を変更する
+     *
      * @param id
      * @return index.htmlにリダイレクトする
      */
@@ -102,6 +107,7 @@ public class TodoController {
     /**
      * searchメソッド
      * 検索画面を表示する
+     *
      * @return search.htmlを返す
      */
     @GetMapping("search")
@@ -112,22 +118,23 @@ public class TodoController {
     /**
      * searchResultメソッド
      * リストからtodo検索する
-     * @param searchWord　入力された検索キーワード
-     * @param model　　Modelクラスのインスタンス
+     *
+     * @param searchWord 　入力された検索キーワード
+     * @param model      　　Modelクラスのインスタンス
      * @return search.htmlを返す
      */
     @PostMapping("search")
     public String searchResult(@RequestParam String searchWord, Model model) {
 
-        if(searchWord.isEmpty() || searchWord == null){
+        if (searchWord.isEmpty() || searchWord == null) {
             model.addAttribute("err_msg01", "文字を入力してください");
             return "search";
         }
 
         List<TodoList> todoLists = todoService.searchInDone(searchWord);
 
-        if(todoLists.isEmpty()) {
-            model.addAttribute("err_msg02","対象のtodoがありません");
+        if (todoLists.isEmpty()) {
+            model.addAttribute("err_msg02", "対象のtodoがありません");
         }
 
         model.addAttribute("todoLists", todoLists).addAttribute("searchWord", searchWord);
@@ -138,6 +145,7 @@ public class TodoController {
     /**
      * destroyメソッド
      * 指定したtodoリストを削除する
+     *
      * @param id
      * @param model Modelクラスのインスタンス
      * @return index.htmlにリダイレクトする
@@ -149,13 +157,14 @@ public class TodoController {
         //更新されたリスト一覧を取得
         List<TodoList> todoLists = todoService.findAll();
         //リスト一覧を表示
-        model.addAttribute("todoLists",todoLists);
+        model.addAttribute("todoLists", todoLists);
         return "redirect:/";
     }
 
     /**
      * allDestroyメソッド
      * 全てのtodoリストを削除する
+     *
      * @return index.htmlにリダイレクトする
      */
     @PostMapping("/delete")

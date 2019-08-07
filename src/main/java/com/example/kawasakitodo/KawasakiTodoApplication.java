@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @SpringBootApplication
 public class KawasakiTodoApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(KawasakiTodoApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(KawasakiTodoApplication.class, args);
+    }
 
 }

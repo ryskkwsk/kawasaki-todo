@@ -6,6 +6,7 @@ import com.example.kawasakitodo.repository.TodoListRepository;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
 import static org.springframework.data.domain.Sort.Direction.DESC;
 
 
@@ -25,6 +26,7 @@ public class TodoService {
     /**
      * findAllメソッド
      * データベースから指定された述語によって定義された条件と一致するすべての要素を取得
+     *
      * @return リポジトリのfindAllメソッドを返す
      */
     public List<TodoList> findAll() {
@@ -33,7 +35,8 @@ public class TodoService {
 
     /**
      * searchInDoneメソッド
-     *元のデータに名前が含まれているか
+     * 元のデータに名前が含まれているか
+     *
      * @param name データカラム
      * @return リポジトリのfindByNameContainingAndDoneIsFalseOrderByCreateDateDescを返す
      */
@@ -45,7 +48,8 @@ public class TodoService {
     /**
      * findOneByIdメソッド
      * 特定のidの要素を取得する
-     * @param id　データカラム
+     *
+     * @param id 　データカラム
      * @return リポジトリのfindByIdを返す
      */
     public TodoList findOneById(Long id) {
@@ -55,6 +59,7 @@ public class TodoService {
     /**
      * createExistSameNameCaseメソッド
      * 重複するかどうかを判定するメソッド
+     *
      * @param todoList
      * @return trueかfalseを返す
      */
@@ -66,6 +71,7 @@ public class TodoService {
     /**
      * createメソッド
      * todoリストを作成する
+     *
      * @param todoList
      */
     public void create(TodoList todoList) {
@@ -75,7 +81,8 @@ public class TodoService {
 
     /**
      * updateメソッド
-     * @param id データベースのカラム
+     *
+     * @param id               データベースのカラム
      * @param receivedTodoList
      */
     public void update(Long id, TodoList receivedTodoList) {
@@ -87,6 +94,7 @@ public class TodoService {
 
     /**
      * changeメソッド
+     *
      * @param id データベースのカラム
      */
     public void change(Long id) {
@@ -98,6 +106,7 @@ public class TodoService {
     /**
      * deleteメソッド
      * 指定したtodoリストを削除する
+     *
      * @param id データベースのカラム
      */
     public void delete(Long id) {
@@ -108,7 +117,7 @@ public class TodoService {
      * allDeleteメソッド
      * 全てのtodoリストを削除する
      */
-    public void allDelete(){
+    public void allDelete() {
         todoListRepository.deleteAll();
     }
 

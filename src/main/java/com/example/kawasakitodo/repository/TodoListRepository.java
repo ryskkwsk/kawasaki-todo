@@ -12,6 +12,7 @@ import java.util.List;
 public interface TodoListRepository extends JpaRepository<TodoList, Long> {
     /**
      * todoリスト名が含まれているかどうか
+     *
      * @param name
      * @return findByNameContainingAndDoneIsFalseOrderByCreateDateDescの結果を返却
      */
@@ -20,6 +21,7 @@ public interface TodoListRepository extends JpaRepository<TodoList, Long> {
 
     /**
      * todoリストの名前と重複しているかどうか
+     *
      * @param name
      * @return findByNameEqualsの結果を返却
      */
