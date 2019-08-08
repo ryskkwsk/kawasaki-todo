@@ -40,30 +40,36 @@
 ####ディレクトリ構成
 
     ├src/
-      ├main/   			     
-        ├java/
-		     ├com/
-			     ├example/
-				         ├kawasakitodo
-						             ├controller/
-									            ├TodoController	
-									 ├entity/
-									        ├TodoList
-									 ├repository/
-									            ├TodoListRepository	
-									 ├service/
-									         ├TodoService
-								     ─ KawasakiTodoApplication	 
-        ├resources/
-		          ├static/
-				         ├bootstrap.js
-						 ├jquery.js
-				  ├templates/
-				            ├layout/
-							       ├header.html
-						    ─index.html
-							─edit.html
-							─search.html
+        ├main/   			     
+             ├java/
+		          ├com/
+			          ├example/
+				              ├kawasakitodo
+					        	           ├controller/
+									                  ├TodoController	
+									       ├entity/
+									              ├TodoList
+									       ├exception/
+									                 ├TodoExceptionHandler
+									                 ├TodoNotFoundException
+									       ├repository/
+									                 ├TodoListRepository	
+									       ├service/
+									               ├TodoService
+								            ─ KawasakiTodoApplication	 
+             ├resources/
+		               ├static/
+				              ├bootstrap.js
+						      ├jquery.js
+				       ├templates/
+				                 ├error/
+				                       ├404.html
+				                       ├500.html
+				                 ├layout/
+							            ├header.html
+						         ─index.html
+							     ─edit.html
+							     ─search.html
     build.gradle
     
 ####開発環境のセットアップ
