@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja" layout:decorate="~{layout/header}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/header"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>編集画面</title>
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <div class="wrapper-heading">Todoの内容を変更します</div>
+    <div class="wrapper-body">
+        <form th:action="@{/{id}/update(id=*{id})}" th:method="put" th:object="${todoList}">
+            <div class="form-group">
+                <label for="name">Todo名</label>
+                <input class="form-control" type="text" id="name" th:field="*{name}">
+            </div>
+            <div class="form-group">
+                <label for="deadLine">期限</label>
+                <input class="form-control" type="date" id="deadLine" th:field="*{deadLine}">
+            </div>
+            <input class="btn btn-info" type="submit" value="更新">
+        </form>
+    </div>
+
+
+</div>
+</body>
+</html>
