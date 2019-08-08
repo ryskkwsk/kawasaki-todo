@@ -90,13 +90,22 @@ public class TodoService {
     }
 
     /**
+     * changeDone メソッド
+     * 状態を変更する
+     * @param todoList
+     */
+    public void changeDone(TodoList todoList) {
+        todoList.setDone(!todoList.isDone());
+    }
+
+    /**
      * changeメソッド
      *
      * @param id データベースのカラム
      */
     public void change(Long id) {
         TodoList todoList = findById(id);
-        todoList.changeDone();
+        changeDone(todoList);
         todoListRepository.save(todoList);
     }
 
