@@ -3,16 +3,13 @@ package com.example.kawasakitodo.controller;
 
 import com.example.kawasakitodo.entity.TodoList;
 import com.example.kawasakitodo.service.TodoService;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Null;
 import java.util.List;
-import java.util.Objects;
 
 @Controller
 public class TodoController {
@@ -50,7 +47,7 @@ public class TodoController {
     @PostMapping("/")
     public String create(@ModelAttribute @Validated TodoList receivedTodoList, BindingResult result, Model model) {
 
-        if (todoService.createExistSameNameCase(receivedTodoList)) {
+        if (todoService.searchExistSameNameCase(receivedTodoList)) {
             result.rejectValue("name", null, "このTodoは存在します。");
             model.addAttribute("todoLists",todoService.findAll());
              return "index";

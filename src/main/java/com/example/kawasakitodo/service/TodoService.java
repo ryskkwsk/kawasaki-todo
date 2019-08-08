@@ -55,13 +55,13 @@ public class TodoService {
     }
 
     /**
-     * createExistSameNameCaseメソッド
+     * searchExistSameNameCaseメソッド
      * 重複するかどうかを判定するメソッド
      *
      * @param todoList
      * @return trueかfalseを返す
      */
-    public boolean createExistSameNameCase(TodoList todoList) {
+    public boolean searchExistSameNameCase(TodoList todoList) {
         TodoList sameNameTodoList = todoListRepository.findByNameEquals(todoList.getName());
         return Objects.nonNull(sameNameTodoList);
     }
