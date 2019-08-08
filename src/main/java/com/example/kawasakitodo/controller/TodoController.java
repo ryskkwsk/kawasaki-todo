@@ -73,7 +73,7 @@ public class TodoController {
      */
     @GetMapping("{id}/edit")
     public String edit(@PathVariable Long id, Model model) {
-        TodoList todoList = todoService.findOneById(id);
+        TodoList todoList = todoService.findById(id);
         model.addAttribute("todoList", todoList);
         return "edit";
     }

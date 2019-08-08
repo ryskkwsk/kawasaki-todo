@@ -3,7 +3,6 @@ package com.example.kawasakitodo.service;
 
 import com.example.kawasakitodo.entity.TodoList;
 import com.example.kawasakitodo.repository.TodoListRepository;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +13,6 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-@ComponentScan("service")
 public class TodoService {
 
     private final TodoListRepository todoListRepository;
@@ -46,13 +44,13 @@ public class TodoService {
 
 
     /**
-     * findOneByIdメソッド
+     * findByIdメソッド
      * 特定のidの要素を取得する
      *
      * @param id 　データカラム
      * @return リポジトリのfindByIdを返す
      */
-    public TodoList findOneById(Long id) {
+    public TodoList findById(Long id) {
         return todoListRepository.findById(id).orElseThrow(RuntimeException::new);
     }
 
@@ -86,7 +84,7 @@ public class TodoService {
      * @param receivedTodoList
      */
     public void update(Long id, TodoList receivedTodoList) {
-        TodoList todoList = findOneById(id);
+        TodoList todoList = findById(id);
         todoList.setName(receivedTodoList.getName());
         todoList.setDeadLine(receivedTodoList.getDeadLine());
         todoListRepository.save(todoList);
@@ -98,7 +96,7 @@ public class TodoService {
      * @param id データベースのカラム
      */
     public void change(Long id) {
-        TodoList todoList = findOneById(id);
+        TodoList todoList = findById(id);
         todoList.changeDone();
         todoListRepository.save(todoList);
     }

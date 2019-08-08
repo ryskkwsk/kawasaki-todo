@@ -26,8 +26,8 @@
                 <th>タイトル</th>
                 <th>期限</th>
                 <th>作成日</th>
+                <th>編集</th>
                 <th>状態</th>
-                <th>削除</th>
             </tr>
         </thread>
         <tbody>
@@ -37,7 +37,7 @@
             <td th:text="*{#temporals.format(createDate, 'yyyy年MM月dd日')}"></td>
             <td><a class="btn btn-success" th:href="@{/{id}/edit(id=*{id})}">編集</a></td>
             <td>
-                <form th:action="@{/{id}/change(id=*{id})}" th:method="put">
+                <form th:action="@{/{id}/modify(id=*{id})}" th:method="put">
                     <input class="btn btn-primary" th:if="${todoList.isDone()==true}" type="submit" value="完了">
                     <input class="btn btn-danger" th:if="${todoList.isDone()==false}" type="submit" value="未完了">
                 </form>
