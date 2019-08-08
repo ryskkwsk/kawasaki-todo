@@ -62,10 +62,6 @@ public class TodoList {
         createDate = LocalDateTime.now();
     }
 
-    public boolean isDone() {
-        return done;
-    }
-
     public void changeDone() {
         done = !done;
     }

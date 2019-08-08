@@ -34,7 +34,7 @@
  | name    |VARCHAR|    no    |  |
  | create_date       |DATETIME|     no     |  |
  | dead_line         |   DATETIME |      no      |  |
- | done       |       BIT |    yes    |  |
+ | done       |       boolean |    yes    |  |
 
 
 ####ディレクトリ構成
