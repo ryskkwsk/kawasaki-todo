@@ -63,8 +63,8 @@ public class TodoService {
      * @return trueかfalseを返す
      */
     public boolean searchExistSameNameCase(TodoList todoList) {
-        TodoList sameNameTodoList = todoListRepository.findByNameEquals(todoList.getName());
-        return Objects.nonNull(sameNameTodoList);
+        Integer result = todoListRepository.countByNameEquals(todoList.getName());
+        return result != 0;
     }
 
     /**
