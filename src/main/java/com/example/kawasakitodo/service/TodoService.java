@@ -2,6 +2,7 @@ package com.example.kawasakitodo.service;
 
 
 import com.example.kawasakitodo.entity.TodoList;
+import com.example.kawasakitodo.exception.TodoNotFoundException;
 import com.example.kawasakitodo.repository.TodoListRepository;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -51,7 +52,7 @@ public class TodoService {
      * @return リポジトリのfindByIdを返す
      */
     public TodoList findById(Long id) {
-        return todoListRepository.findById(id).orElseThrow(RuntimeException::new);
+        return todoListRepository.findById(id).orElseThrow(TodoNotFoundException::new);
     }
 
     /**
