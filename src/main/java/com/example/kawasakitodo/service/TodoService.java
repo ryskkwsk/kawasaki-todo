@@ -73,7 +73,6 @@ public class TodoService {
      * @param todoList
      */
     public void create(TodoList todoList) {
-        todoList.setCreateDate();
         todoListRepository.save(todoList);
     }
 

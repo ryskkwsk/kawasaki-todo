@@ -57,6 +57,7 @@ public class TodoList {
     @Column
     private boolean done;
 
+    @PrePersist
     public void setCreateDate() {
         createDate = LocalDateTime.now();
     }
