@@ -33,8 +33,8 @@
  | id       |INT|     no     | primary key |
  | name    |VARCHAR|    no    |  |
  | create_date       |DATETIME|     no     |  |
- | dead_line         |   DATETIME |      no      |  |
- | done       |       boolean |    yes    |  |
+ | dead_line         |   DATE |      no      |  |
+ | done       |       BOOLEAN |    yes    |  |
 
 
 ####ディレクトリ構成

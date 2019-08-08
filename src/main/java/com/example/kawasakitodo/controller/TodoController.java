@@ -31,7 +31,7 @@ public class TodoController {
     public String top(Model model) {
         TodoList todoList = new TodoList();
         List<TodoList> todoLists = todoService.findAll();
-        model.addAttribute("todoList", todoList).addAttribute("todoLists", todoLists);
+        model.addAttribute("todoList",todoList).addAttribute("todoLists",todoLists);
         return "index";
     }
 
