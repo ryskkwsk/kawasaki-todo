@@ -16,11 +16,11 @@ public class TodoExceptionHandler  {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String notFoundError(Exception e) {
-        logger.error(e.getMessage(), e);
+        logger.warn(e.getMessage(), e);
         return "error/404";
     }
 
-    @ExceptionHandler
+    @ExceptionHandler(TodoNotFoundException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public String internalServerError(Exception e) {
         logger.error(e.getMessage(), e);

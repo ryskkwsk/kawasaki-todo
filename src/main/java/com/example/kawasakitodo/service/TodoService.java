@@ -52,7 +52,7 @@ public class TodoService {
      * @return リポジトリのfindByIdを返す
      */
     public TodoList findById(Long id) {
-        return todoListRepository.findById(id).orElseThrow(TodoNotFoundException::new);
+        return todoListRepository.findById(id).orElseThrow(() -> new TodoNotFoundException(String.format(id + "対象のtodoリストは見つかりませんでした")));
     }
 
     /**
