@@ -1,45 +1,105 @@
-**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
+#Todoアプリケーション
 
-When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
+###使用技術
+-Spring Boot2.1.7
 
-*We recommend that you open this README in another tab as you perform the tasks below. You can [watch our video](https://youtu.be/0ocf7u76WSo) for a full demo of all the steps in this tutorial. Open the video in a new tab to avoid leaving Bitbucket.*
+-Java8
 
----
+-BootStrap3.3.7
 
-## Edit a file
+-MySQL5.7
 
-You’ll start by editing this README file to learn how to edit a file in Bitbucket.
+###全体の設計・構成についての説明
 
-1. Click **Source** on the left side.
-2. Click the README.md link from the list of files.
-3. Click the **Edit** button.
-4. Delete the following text: *Delete this line to make a change to the README from Bitbucket.*
-5. After making your change, click **Commit** and then **Commit** again in the dialog. The commit page will open and you’ll see the change you just made.
-6. Go back to the **Source** page.
+####ルーティング
 
----
+ | HTTPメソッド | URL | Conrtollerメソッド | 概要 |
+ |:-----------|:------------|:------------|:--- |
+ | GET       |        / |     top     | 一覧画面の表示 |
+ | POST    |      / |    create    | データの保存 |
+ | GET       |        {id}/edit |     edit     | 編集画面の表示 |
+ | PUT         |   {id}/update |      update      | データの更新 |
+ | PUT       |       {id}/modify |    modify    | データの状態変更 |
+ | GET    |     search |   search    | 検索画面の表示 |
+ | POST | search | searchResult | データの検索機能　|
+ | POST | /{id}/delete | delete | データの削除機能 |
+ | POST | /delete | deleteAll | データの全て削除機能 |
 
-## Create a file
 
-Next, you’ll add a new file to this repository.
+####DB設計
 
-1. Click the **New file** button at the top of the **Source** page.
-2. Give the file a filename of **contributors.txt**.
-3. Enter your name in the empty file space.
-4. Click **Commit** and then **Commit** again in the dialog.
-5. Go back to the **Source** page.
+ | カラム名 | 型 | null | key |
+ |:-----------|:------------|:------------|:--- |
+ | id       |INT|     no     | primary key |
+ | name    |VARCHAR|    no    |  |
+ | create_date       |DATETIME|     no     |  |
+ | dead_line         |   DATETIME |      no      |  |
+ | done       |       BIT |    yes    |  |
 
-Before you move on, go ahead and explore the repository. You've already seen the **Source** page, but check out the **Commits**, **Branches**, and **Settings** pages.
 
----
+####ディレクトリ構成
 
-## Clone a repository
+    ├src/
+      ├main/   			     
+        ├java/
+		     ├com/
+			     ├example/
+				         ├kawasakitodo
+						             ├controller/
+									            ├TodoController	
+									 ├entity/
+									        ├TodoList
+									 ├repository/
+									            ├TodoListRepository	
+									 ├service/
+									         ├TodoService
+								     ─ KawasakiTodoApplication	 
+        ├resources/
+		          ├static/
+				         ├bootstrap.js
+						 ├jquery.js
+				  ├templates/
+				            ├layout/
+							       ├header.html
+						    ─index.html
+							─edit.html
+							─search.html
+    build.gradle
+    
+####開発環境のセットアップ
+・Java8 インストール
+```
+$ brew cask install java8 
+$ export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+```
 
-Use these steps to clone from SourceTree, our client for using the repository command-line free. Cloning allows you to work on your files locally. If you don't yet have SourceTree, [download and install first](https://www.sourcetreeapp.com/). If you prefer to clone from the command line, see [Clone a repository](https://confluence.atlassian.com/x/4whODQ).
-
-1. You’ll see the clone button under the **Source** heading. Click that button.
-2. Now click **Check out in SourceTree**. You may need to create a SourceTree account or log in.
-3. When you see the **Clone New** dialog in SourceTree, update the destination path and name if you’d like to and then click **Clone**.
-4. Open the directory you just created to see your repository’s files.
-
-Now that you're more familiar with your Bitbucket repository, go ahead and add a new file locally. You can [push your change back to Bitbucket with SourceTree](https://confluence.atlassian.com/x/iqyBMg), or you can [add, commit,](https://confluence.atlassian.com/x/8QhODQ) and [push from the command line](https://confluence.atlassian.com/x/NQ0zDQ).
+・MySQLインストール
+```
+$ brew install mysql@5.7
+```
+・MySQL起動
+```
+$ mysql.server start
+```
+・DBの作成
+```
+ $ mysql -u root #MySQLにログイン
+ mysql> CREATE DATABASE kawasaki_todo; #データベース作成
+```
+・application.propertiesの作成
+```
+spring.datasource.url=jdbc:mysql://localhost:3306/kawasaki_todo
+spring.datasource.username=root
+spring.datasource.password=
+spring.datasource.driverClassName=com.mysql.cj.jdbc.Driver
+spring.jpa.database=MYSQL
+spring.jpa.hibernate.ddl-auto=update
+```
+・アプリ起動
+```
+./gradlew bootRun
+```
+・ブラウザで起動
+```
+http://localhost:8080
+```

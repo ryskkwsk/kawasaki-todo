@@ -79,7 +79,7 @@ public class TodoService {
     /**
      * updateメソッド
      *
-     * @param id               データベースのカラム
+     * @param id データベースのカラム
      * @param receivedTodoList
      */
     public void update(Long id, TodoList receivedTodoList) {
